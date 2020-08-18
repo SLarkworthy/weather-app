@@ -1,4 +1,5 @@
 const request = require('request');
+const geocode = require('./utils/geocode')
 
 // const url = 'http://api.weatherstack.com/current?access_key=08afdbba194305b668e64b03239cdb7b&query=37.8267,-122.4233&units=f'
 
@@ -16,16 +17,21 @@ const request = require('request');
 //Geocoding
 //Address -> lat/long -> weather
 
-const geocodingUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=pk.eyJ1Ijoic2xhcmsiLCJhIjoiY2tkeW54ZjdvMWp6ajJzbnNrYTJtcG9yNiJ9.4g7A6Mai6r1T-o9rGVT7Qg&limit=1'
+// const geocodingUrl = 'https://api.mapbox.com/geocoding/v5/mapbox.places/Los%20Angeles.json?access_token=pk.eyJ1Ijoic2xhcmsiLCJhIjoiY2tkeW54ZjdvMWp6ajJzbnNrYTJtcG9yNiJ9.4g7A6Mai6r1T-o9rGVT7Qg&limit=1'
 
-request({ url: geocodingUrl, json: true }, (error, response) => {
-    if (error) {
-        console.log("Unable to connect to mapbox api");
-    } else if (!response.body.features) {
-        console.log("Location not found. Try a different search term.");
-    } else {
-        const latitude = response.body.features[0].center[1];
-        const longitude = response.body.features[0].center[0];
-        console.log(response.body.features[0].center);
-    }
+// request({ url: geocodingUrl, json: true }, (error, response) => {
+//     if (error) {
+//         console.log("Unable to connect to mapbox api");
+//     } else if (!response.body.features) {
+//         console.log("Location not found. Try a different search term.");
+//     } else {
+//         const latitude = response.body.features[0].center[1];
+//         const longitude = response.body.features[0].center[0];
+//         console.log(response.body.features[0].center);
+//     }
+// })
+
+geocode('Boston', (error, data) => {
+    console.log('Error', error)
+    console.log('Data', data)
 })
